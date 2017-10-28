@@ -1,0 +1,21 @@
+{
+  "name": "@okode/app-scripts",
+  "version": "0.0.1",
+  "description": "App Build Scripts for Okode Projects",
+  "keywords": [
+    "ionic",
+    "npm",
+    "ci",
+    "cordova"
+  ],
+  "homepage": "https://github.com/okode/okode-app-scripts/",
+  "bugs": {
+    "url": "https://github.com/okode/okode-app-scripts/issues"
+  },
+  "license": "MIT",
+  "author": "Okode <info@okode.com> (https://www.okode.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okode/okode-app-scripts.git"
+  }
+}
