@@ -2,20 +2,16 @@
   "name": "@okode/app-scripts",
   "version": "0.0.1",
   "description": "App Build Scripts for Okode Projects",
-  "keywords": [
-    "ionic",
-    "npm",
-    "ci",
-    "cordova"
-  ],
   "homepage": "https://github.com/okode/okode-app-scripts/",
-  "bugs": {
-    "url": "https://github.com/okode/okode-app-scripts/issues"
-  },
   "license": "MIT",
   "author": "Okode <info@okode.com> (https://www.okode.com)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/okode/okode-app-scripts.git"
+  "private": true,
+  "scripts": {
+    "translator": "ts-node ./src/translator.ts"
+  },
+  "devDependencies": {
+    "ts-node": "3.3.0",
+    "@types/node": "8.0.53",
+    "typescript": "2.4.2"
   }
 }
