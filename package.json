@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Okode <info@okode.com> (https://www.okode.com)",
   "private": true,
-  "scripts": {
+  "bin": {
     "translator": "ts-node ./src/translator.ts"
   },
   "devDependencies": {
