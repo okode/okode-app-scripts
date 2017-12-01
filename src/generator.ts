@@ -1,14 +1,6 @@
 import * as fs from 'fs';
 
 module Generator {
-  export const types = [ 'page', 'component', 'pipe', 'service', 'directive' ];
-  const fs = require('fs');  
-  const util = require('util');
-  const read = util.promisify(fs.readFile);
-  const write = util.promisify(fs.writeFile);
-  const tmplDir = __dirname + '/templates';
-  let type: string;
-  let name: string;
   export function init(args: any) {
     if (args.length < 4) {
       Utils.showErrorInvalidArgs();
@@ -19,6 +11,14 @@ module Generator {
       else Utils.showErrorInvalidArgs();
     }
   }
+  // private
+  const fs = require('fs');
+  const util = require('util');
+  const read = util.promisify(fs.readFile);
+  const write = util.promisify(fs.writeFile);
+  const tmplDir = __dirname + '/templates';
+  let type: string;
+  let name: string;
   function generate() {
     switch (type) {
       case 'page':      generatePage(); break;
@@ -33,16 +33,16 @@ module Generator {
     Utils.mkdir(`./pages/${name}`);
     // create page.ts
     let tmpl = await read(`${tmplDir}/page/ts.tmpl`);
-    await write(`./pages/${name}/${name}.ts`, replaceTmpl(tmpl, name));
+    await write(`./pages/${name}/${name}.ts`, Utils.replaceTmpl(tmpl, name));
     // create page.module.ts
     tmpl = await read(`${tmplDir}/page/module.ts.tmpl`);
-    await write(`./pages/${name}/${name}.module.ts`, replaceTmpl(tmpl, name));
+    await write(`./pages/${name}/${name}.module.ts`, Utils.replaceTmpl(tmpl, name));
     // create page.html
     tmpl = await read(`${tmplDir}/page/html.tmpl`);
-    await write(`./pages/${name}/${name}.html`, replaceTmpl(tmpl, name));
+    await write(`./pages/${name}/${name}.html`, Utils.replaceTmpl(tmpl, name));
     // create page.scss
     tmpl = await read(`${tmplDir}/page/scss.tmpl`);
-    await write(`./pages/${name}/${name}.scss`, replaceTmpl(tmpl, name));
+    await write(`./pages/${name}/${name}.scss`, Utils.replaceTmpl(tmpl, name));
     // complete
     Utils.showSuccess(type, name);
   }
@@ -62,19 +62,13 @@ module Generator {
     // TODO
     Utils.showError('TODO generateDirective');
   }
-  function replaceTmpl(content: any, name: string) {
-    let className = Utils.snakeToCamelCase(name);
-    content = content.toString();
-    content = content.replace(/\$FILENAME\$/gi, name);
-    content = content.replace(/\$CLASSNAME\$/gi, className);
-    return content;
-  }
 }
 
 module Utils {
-  const c = require('colors');  
+  const types = [ 'page', 'component', 'pipe', 'service', 'directive' ];
+  const c = require('colors');
   export function isValidType(type: string) {
-    return Generator.types.indexOf(type) >= 0;
+    return types.indexOf(type) >= 0;
   }
   export function mkdir(path: string) {
     if (!fs.existsSync(path)) { fs.mkdirSync(path); }
@@ -85,7 +79,7 @@ module Utils {
   export function showErrorInvalidArgs() {
     console.log('\n' + c.red('ERROR: Invalid args'));
     console.log('       Usage example: ' + c.green('generator TYPE NAME'));
-    console.log('       TYPE must be one of: ' + c.green(Generator.types.join(', ')));
+    console.log('       TYPE must be one of: ' + c.green(types.join(', ')));
     console.log('       NAME must be lowercase with - separating words: looks-like-this\n');
   }
   export function showSuccess(type: string, name: string) {
@@ -95,6 +89,13 @@ module Utils {
   export function snakeToCamelCase(s: string){
     let r = s.replace(/(\-\w)/g, function(m) { return m[1].toUpperCase(); });
     return r.charAt(0).toUpperCase() + r.slice(1);
+  }
+  export function replaceTmpl(content: any, name: string) {
+    let className = Utils.snakeToCamelCase(name);
+    content = content.toString();
+    content = content.replace(/\$FILENAME\$/gi, name);
+    content = content.replace(/\$CLASSNAME\$/gi, className);
+    return content;
   }
 }
 
