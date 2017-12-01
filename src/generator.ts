@@ -2,8 +2,11 @@ import * as fs from 'fs';
 
 module Generator {
   export const types = [ 'page', 'component', 'pipe', 'service', 'directive' ];
-  const tmplDir = __dirname + '/templates/';
-  let fs = require('fs');  
+  const fs = require('fs');  
+  const util = require('util');
+  const read = util.promisify(fs.readFile);
+  const write = util.promisify(fs.writeFile);
+  const tmplDir = __dirname + '/templates';
   let type: string;
   let name: string;
   export function init(args: any) {
@@ -25,36 +28,46 @@ module Generator {
       case 'directive': generateDirective(); break;
     }
   }
-  function generatePage() {
+  async function generatePage() {
     Utils.mkdir('./pages');
-    Utils.mkdir('./pages/' + name);
+    Utils.mkdir(`./pages/${name}`);
     // create page.ts
-    fs.readFile(tmplDir + 'page.ts.tmpl', function (err: any, data: any) {
-      if (err) return Utils.showError(err);
-      let ts_tmpl = data.toString();
-      ts_tmpl = (Utils.replaceFileContent(ts_tmpl, name));
-      let filepath = './pages/' + name + '/' + name + '.ts';
-      fs.writeFile(filepath, ts_tmpl, function (err: any) {
-        if (err) return Utils.showError(err);
-        Utils.showSuccess(type, name);
-      }); 
-    });
+    let tmpl = await read(`${tmplDir}/page/ts.tmpl`);
+    await write(`./pages/${name}/${name}.ts`, replaceTmpl(tmpl, name));
+    // create page.module.ts
+    tmpl = await read(`${tmplDir}/page/module.ts.tmpl`);
+    await write(`./pages/${name}/${name}.module.ts`, replaceTmpl(tmpl, name));
+    // create page.html
+    tmpl = await read(`${tmplDir}/page/html.tmpl`);
+    await write(`./pages/${name}/${name}.html`, replaceTmpl(tmpl, name));
+    // create page.scss
+    tmpl = await read(`${tmplDir}/page/scss.tmpl`);
+    await write(`./pages/${name}/${name}.scss`, replaceTmpl(tmpl, name));
+    // complete
+    Utils.showSuccess(type, name);
   }
   function generateComponent() {
     // TODO
-    Utils.showSuccess(type, name);
+    Utils.showError('TODO generateComponent');
   }
   function generatePipe() {
     // TODO
-    Utils.showSuccess(type, name);
+    Utils.showError('TODO generatePipe');
   }
   function generateService() {
     // TODO
-    Utils.showSuccess(type, name);
+    Utils.showError('TODO generateService');
   }
   function generateDirective() {
     // TODO
-    Utils.showSuccess(type, name);
+    Utils.showError('TODO generateDirective');
+  }
+  function replaceTmpl(content: any, name: string) {
+    let className = Utils.snakeToCamelCase(name);
+    content = content.toString();
+    content = content.replace(/\$FILENAME\$/gi, name);
+    content = content.replace(/\$CLASSNAME\$/gi, className);
+    return content;
   }
 }
 
@@ -67,34 +80,22 @@ module Utils {
     if (!fs.existsSync(path)) { fs.mkdirSync(path); }
   }
   export function showError(err: any) {
-    console.log(c.red('ERROR: ' + err));
+    console.log('\n' + c.red('ERROR: ' + err) + '\n');
   }
   export function showErrorInvalidArgs() {
-    console.log(c.red('ERROR: Invalid args'));
+    console.log('\n' + c.red('ERROR: Invalid args'));
     console.log('       Usage example: ' + c.green('generator TYPE NAME'));
     console.log('       TYPE must be one of: ' + c.green(Generator.types.join(', ')));
-    console.log('       NAME must be lowercase with - separating words: looks-like-this');
+    console.log('       NAME must be lowercase with - separating words: looks-like-this\n');
   }
   export function showSuccess(type: string, name: string) {
-    console.log(
-      c.green('Success!') + ' Generated a ' + c.green(type) +' named ' + c.green(name)
-    );
+    console.log('\n' + c.green('Success!'));
+    console.log('Generated a ' + c.green(type) +' named ' + c.green(name) + '\n');
   }
   export function snakeToCamelCase(s: string){
     let r = s.replace(/(\-\w)/g, function(m) { return m[1].toUpperCase(); });
     return r.charAt(0).toUpperCase() + r.slice(1);
   }
-  export function replaceFileContent(content: string, name: string) {
-    let className = Utils.snakeToCamelCase(name);
-    content = content.replace(/\$FILENAME\$/gi, name);
-    content = content.replace(/\$CLASSNAME\$/gi, className);
-    return content;
-  }
 }
 
-// Initilize
 Generator.init(process.argv);
-
-
-
-
