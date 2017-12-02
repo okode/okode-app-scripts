@@ -1,0 +1,12 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: '$FILENAME$',
+})
+export class $CLASSNAME$Pipe implements PipeTransform {
+
+  transform(value: string) {
+    return value.toLowerCase();
+  }
+
+}
