@@ -5,16 +5,20 @@
   "homepage": "https://github.com/okode/okode-app-scripts/",
   "license": "MIT",
   "author": "Okode <info@okode.com> (https://www.okode.com)",
-  "private": true,
   "scripts": {
-    "translator": "ts-node ./src/translator.ts"
+    "compile": "tsc -p ./ --outDir dist/"
+  },
+  "bin": {
+    "okode-app-scripts": "./bin/okode-app-scripts.js"
+  },
+  "main": "./src/index",
+  "dependencies": {
+    "typescript": "2.4.2",
+    "fs-extra": "4.0.2",
+    "colors": "1.1.2"
   },
   "devDependencies": {
-    "ts-node": "3.3.0",
-    "@types/node": "8.0.53",
-    "typescript": "2.4.2"
-  },
-  "dependencies": {
-    "colors": "1.1.2"
+    "@types/node": "8.0.54"
   }
 }
+

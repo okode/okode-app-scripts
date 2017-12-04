@@ -11,7 +11,8 @@ module.exports = function(context) {
     for (let platform of context.opts.platforms) {
         
         // Compute destination folder
-        let destinationDir = platform == 'android' ? 'platforms/android/assets/www/build' : 'platforms/ios/www/build';
+        let destinationDir = platform == 'android' ?
+          'platforms/android/assets/www/build' : 'platforms/ios/www/build';
 
         // Copy source map to destination folder
         let sourceMainJSMap = path.join(projectRoot, '.sourcemaps/main.js.map');
