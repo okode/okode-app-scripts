@@ -1,10 +1,13 @@
 import * as fs from 'fs';
 
-export module Translator {
+export module CSV2JSON {
   
-  export function init(csvFile: string) {
-    if (csvFile == null || csvFile.toUpperCase().endsWith('.CSV')) {
-      console.log('Args example: csv_file_to_translate.csv');
+  let csvFile: string = '';
+
+  export function init(inputFile: string) {
+    csvFile = inputFile;
+    if (csvFile == null || !csvFile.toUpperCase().endsWith('.CSV')) {
+      console.log('Required: csv file to convert');
     } else {
       fs.readFile(csvFile, 'utf8', csvHandler);
     }
@@ -23,8 +26,6 @@ export module Translator {
     let str = JSON.stringify(multiLevelObj, null, 2);
 
     // write result to file
-    let csvFile = process.argv[2];
-    let fileName = csvFile.slice(0, csvFile.toUpperCase().lastIndexOf('.CSV'));
     let destFile = `${fileName}.json`;
     fs.writeFileSync(destFile, str, 'utf8');
   }

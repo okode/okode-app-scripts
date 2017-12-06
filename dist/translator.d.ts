@@ -1,3 +1,3 @@
 export declare module Translator {
-    function init(csvFile: string): void;
+    function init(inputFile: string): void;
 }

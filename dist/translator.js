@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var Translator;
 (function (Translator) {
-    function init(csvFile) {
-        if (csvFile == null || csvFile.toUpperCase().endsWith('.CSV')) {
+    var csvFile = '';
+    function init(inputFile) {
+        csvFile = inputFile;
+        if (csvFile == null || !csvFile.toUpperCase().endsWith('.CSV')) {
             console.log('Args example: csv_file_to_translate.csv');
         }
         else {
@@ -22,7 +24,7 @@ var Translator;
         // make JSON string
         var str = JSON.stringify(multiLevelObj, null, 2);
         // write result to file
-        var csvFile = process.argv[2];
+        // let csvFile = process.argv[2];
         var fileName = csvFile.slice(0, csvFile.toUpperCase().lastIndexOf('.CSV'));
         var destFile = fileName + ".json";
         fs.writeFileSync(destFile, str, 'utf8');

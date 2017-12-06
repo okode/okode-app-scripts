@@ -1,5 +1,5 @@
 import { Generator } from './generator';
-import { Translator } from './translator';
+import { CSV2JSON } from './csv2json';
 
 export function start(args: any) {
 
@@ -18,12 +18,12 @@ export function start(args: any) {
       return;
 
     /**
-     * Translator
-     * ----------
+     * CSV2JSON
+     * --------
      */
-    case 'translator':
-    case '-t':
-      Translator.init(params[0]);
+    case 'csv2json':
+    case '-c2j':
+      CSV2JSON.init(params[0]);
       return;
 
     /**/
