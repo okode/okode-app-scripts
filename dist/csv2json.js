@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
-var Translator;
-(function (Translator) {
+var CSV2JSON;
+(function (CSV2JSON) {
     var csvFile = '';
     function init(inputFile) {
         csvFile = inputFile;
         if (csvFile == null || !csvFile.toUpperCase().endsWith('.CSV')) {
-            console.log('Args example: csv_file_to_translate.csv');
+            console.log('Required: csv file to convert');
         }
         else {
             fs.readFile(csvFile, 'utf8', csvHandler);
         }
     }
-    Translator.init = init;
+    CSV2JSON.init = init;
     function csvHandler(err, data) {
         if (err)
             throw err;
@@ -24,7 +24,6 @@ var Translator;
         // make JSON string
         var str = JSON.stringify(multiLevelObj, null, 2);
         // write result to file
-        // let csvFile = process.argv[2];
         var fileName = csvFile.slice(0, csvFile.toUpperCase().lastIndexOf('.CSV'));
         var destFile = fileName + ".json";
         fs.writeFileSync(destFile, str, 'utf8');
@@ -57,4 +56,4 @@ var Translator;
             obj[splitKeys[0]] = value;
         }
     }
-})(Translator = exports.Translator || (exports.Translator = {}));
+})(CSV2JSON = exports.CSV2JSON || (exports.CSV2JSON = {}));

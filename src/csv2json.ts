@@ -26,6 +26,7 @@ export module CSV2JSON {
     let str = JSON.stringify(multiLevelObj, null, 2);
 
     // write result to file
+    let fileName = csvFile.slice(0, csvFile.toUpperCase().lastIndexOf('.CSV'));
     let destFile = `${fileName}.json`;
     fs.writeFileSync(destFile, str, 'utf8');
   }
