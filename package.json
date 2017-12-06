@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Okode <info@okode.com> (https://www.okode.com)",
   "scripts": {
-    "compile": "tsc -p ./ --outDir dist/"
+    "build": "tsc -p ./ --outDir dist/"
   },
   "bin": {
     "okode-app-scripts": "./bin/okode-app-scripts.js"

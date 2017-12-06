@@ -13,5 +13,5 @@ $ npm install
 This command will compile `src/*.ts` to `dist/{*.js | *.d.ts}`
 
 ```
-$ npm run compile
+$ npm run build
 ```
