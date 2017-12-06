@@ -2,10 +2,16 @@
 
 App Build Scripts for Okode Projects
 
-## Compile TypeScript
-
-This command will compile `src/*.ts` to `dist/*.src`
+## Install dependencies
 
 ```
-npm run compile
+$ npm install
+```
+
+## Compile TypeScript
+
+This command will compile `src/*.ts` to `dist/{*.js | *.d.ts}`
+
+```
+$ npm run compile
 ```
