@@ -5,12 +5,9 @@ Object.keys(webpackConfig).forEach(function(env) {
     loader: 'ifdef-loader',
     options: {
       PROD: process.env.IONIC_ENV === 'prod',
-      DEV:  process.env.IONIC_ENV === 'dev',
-      "ifdef-verbose": true
+      DEV:  process.env.IONIC_ENV === 'dev'
     }
   });
 });
-
-console.log('DEBUG WEBPACK: Current loaders: ' + JSON.stringify(webpackConfig.dev.module.loaders));
 
 module.exports = function () { return webpackConfig; }
