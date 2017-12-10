@@ -9,4 +9,6 @@ webpackConfig.dev.module.loaders.unshift({
   }
 });
 
+console.log('DEBUG WEBPACK: Current loaders: ' + JSON.stringify(webpackConfig.dev.module.loaders));
+
 module.exports = function () { return webpackConfig; }
