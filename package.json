@@ -9,7 +9,8 @@
     "build": "tsc -p ./ --outDir dist/"
   },
   "bin": {
-    "okode-app-scripts": "./bin/okode-app-scripts.js"
+    "okode-app-scripts": "./bin/okode-app-scripts.js",
+    "okode-strip-dev-code": "./bin/okode-strip-dev-code.sh"
   },
   "main": "./src/index",
   "dependencies": {
