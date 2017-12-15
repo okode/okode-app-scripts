@@ -105,10 +105,9 @@ export module Generator {
 
   async function generateService() {
     Utils.mkdir('./src/services');
-    Utils.mkdir(`./src/services/${name}`);
     // .ts
     let tmpl = await read(`${tmplDir}/service/ts.tmpl`);
-    await write(`./src/services/${name}/${name}.ts`, Utils.replaceTmpl(tmpl, name));
+    await write(`./src/services/${name}.ts`, Utils.replaceTmpl(tmpl, name));
     //
     Utils.showSuccess(type, name);
   }

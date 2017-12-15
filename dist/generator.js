@@ -226,11 +226,10 @@ var Generator;
                 switch (_a.label) {
                     case 0:
                         Utils.mkdir('./src/services');
-                        Utils.mkdir("./src/services/" + name);
                         return [4 /*yield*/, read(tmplDir + "/service/ts.tmpl")];
                     case 1:
                         tmpl = _a.sent();
-                        return [4 /*yield*/, write("./src/services/" + name + "/" + name + ".ts", Utils.replaceTmpl(tmpl, name))];
+                        return [4 /*yield*/, write("./src/services/" + name + ".ts", Utils.replaceTmpl(tmpl, name))];
                     case 2:
                         _a.sent();
                         //
