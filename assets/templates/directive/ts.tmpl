@@ -1,12 +1,14 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[$FILENAME$]'
 })
 export class $CLASSNAME$Directive {
 
-  constructor() {
-    console.log('$CLASSNAME$Directive Directive');
+  constructor(private elementRef: ElementRef) {}
+
+  ngOnChanges() {
+    console.log('ngOnChanges $CLASSNAME$Directive');
   }
 
 }
