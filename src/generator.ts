@@ -145,16 +145,23 @@ module Utils {
     console.log('Generated a ' + c.green(type) +' named ' + c.green(name) + '\n');
   }
 
-  export function snakeToCamelCase(s: string){
+  export function snakeToCamelCase(s: string, lowerCamelCase = false){
     let r = s.replace(/(\-\w)/g, function(m) { return m[1].toUpperCase(); });
-    return r.charAt(0).toUpperCase() + r.slice(1);
+    if (lowerCamelCase) {
+      return r;
+    } else {
+      return r.charAt(0).toUpperCase() + r.slice(1);
+    }
   }
 
   export function replaceTmpl(content: any, name: string) {
-    let className = Utils.snakeToCamelCase(name);
+    let camelCaseName = name;
+    let upperCamelCase = Utils.snakeToCamelCase(name);
+    let lowerCamelCase = Utils.snakeToCamelCase(name, true);
     content = content.toString();
-    content = content.replace(/\$FILENAME\$/gi, name);
-    content = content.replace(/\$CLASSNAME\$/gi, className);
+    content = content.replace(/\$FILENAME\$/gi, camelCaseName);
+    content = content.replace(/\$CLASSNAME\$/gi, upperCamelCase);
+    content = content.replace(/\$LOWERCLASSNAME\$/gi, lowerCamelCase);
     return content;
   }
 
