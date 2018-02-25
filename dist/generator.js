@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
+var fs = require("fs-extra");
 // Generator --------------------------------------------------------------------------------------
 var Generator;
 (function (Generator) {
@@ -48,7 +48,7 @@ var Generator;
             Utils.showErrorInvalidArgs();
     }
     Generator.init = init;
-    var fs = require('fs');
+    var fs = require('fs-extra');
     var util = require('util');
     var read = util.promisify(fs.readFile);
     var write = util.promisify(fs.writeFile);

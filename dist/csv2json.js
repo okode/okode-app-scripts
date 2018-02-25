@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
+var fs = require("fs-extra");
 var CSV2JSON;
 (function (CSV2JSON) {
     var csvFile = '';
