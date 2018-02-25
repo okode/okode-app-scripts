@@ -1,5 +1,6 @@
 import { Generator } from './generator';
 import { CSV2JSON } from './csv2json';
+import { FetchPlugins } from './fetch-plugins';
 
 export function start(args: any) {
 
@@ -24,6 +25,15 @@ export function start(args: any) {
     case 'csv2json':
     case '-c2j':
       CSV2JSON.init(params[0]);
+      return;
+
+    /**
+     * FetchPlugins
+     * ------------
+     */
+    case 'fetch-plugins':
+    case '-fp':
+      FetchPlugins.init();
       return;
 
     /**/
