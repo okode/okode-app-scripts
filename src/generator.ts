@@ -11,7 +11,7 @@ export module Generator {
     else Utils.showErrorInvalidArgs();
   }
 
-  const fs = require('fs');
+  const fs = require('fs-extra');
   const util = require('util');
   const read = util.promisify(fs.readFile);
   const write = util.promisify(fs.writeFile);
