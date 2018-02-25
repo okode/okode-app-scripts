@@ -1,4 +1,5 @@
 import * as fs from 'fs-extra';
+import * as shell from 'shelljs';
 
 export module FetchPlugins {
 
@@ -7,7 +8,14 @@ export module FetchPlugins {
     let fetch = JSON.parse(fs.readFileSync('plugins/fetch.json', 'utf8'));
     for (let plugin in fetch) {
       console.log(`Fetching plugin: ${plugin}`);
-      fs.copySync(`node_modules/${plugin}`, `plugins/${plugin}`);
+      let src = `node_modules/${plugin}`;
+      if (!fs.pathExistsSync(src)) {
+        if (shell.exec(`npm install ${fetch[plugin].source.id} --no-save`).code !== 0) {
+          console.log(`Skipping plugin ${plugin}`);
+          continue;
+        }
+      }
+      fs.copySync(src, `plugins/${plugin}`);
     }
   }
 
