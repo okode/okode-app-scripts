@@ -24,7 +24,7 @@ module.exports = function(context) {
               let data = fs.readFileSync(jsFullPath);
               if (data.indexOf('//# sourceMappingURL=') == -1) {
                 console.log('Adding missing source mapping URL: ' + jsFullPath);
-                fs.appendFileSync(jsFullPath, '//# sourceMappingURL=' + jsFile + '.map');
+                fs.appendFileSync(jsFullPath, `\n//# sourceMappingURL=${jsFile}.map`);
               }
             }
           });
