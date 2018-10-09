@@ -5,7 +5,6 @@ var shell = require("shelljs");
 var FetchPlugins;
 (function (FetchPlugins) {
     function init() {
-        console.log('WARN: Fetch plugins is deprecated.');
         fs.readFile;
         var fetch = JSON.parse(fs.readFileSync('plugins/fetch.json', 'utf8'));
         for (var plugin in fetch) {

@@ -4,7 +4,6 @@ import * as shell from 'shelljs';
 export module FetchPlugins {
 
   export function init() {
-    console.log('WARN: Fetch plugins is deprecated.');
     fs.readFile
     let fetch = JSON.parse(fs.readFileSync('plugins/fetch.json', 'utf8'));
     for (let plugin in fetch) {
