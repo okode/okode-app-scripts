@@ -11,7 +11,7 @@ export module FetchPlugins {
       let src = `node_modules/${plugin}`;
       if (!fs.pathExistsSync(src)) {
         console.log(`Installing plugin via npm: ${fetch[plugin].source.id}`);
-        let execOutput = shell.exec(`npm install ${fetch[plugin].source.id} --no-save`);
+        let execOutput = shell.exec(`npm install "${fetch[plugin].source.id}" --no-save`);
         if (execOutput !== null && execOutput.code !== 0) {
           console.log(`Skipping plugin ${plugin}`);
           continue;
