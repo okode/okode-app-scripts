@@ -12,7 +12,7 @@ var FetchPlugins;
             var src = "node_modules/" + plugin;
             if (!fs.pathExistsSync(src)) {
                 console.log("Installing plugin via npm: " + fetch[plugin].source.id);
-                var execOutput = shell.exec("npm install " + fetch[plugin].source.id + " --no-save");
+                var execOutput = shell.exec("npm install \"" + fetch[plugin].source.id + "\" --no-save");
                 if (execOutput !== null && execOutput.code !== 0) {
                     console.log("Skipping plugin " + plugin);
                     continue;
