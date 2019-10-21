@@ -36,16 +36,16 @@ export module Generator {
     Utils.mkdir(`./src/pages/${name}`);
     // .ts
     let tmpl = await read(`${tmplDir}/page/ts.tmpl`);
-    await write(`./src/pages/${name}/${name}.ts`, Utils.replaceTmpl(tmpl, name));
+    await write(`./src/pages/${name}/${name}.page.ts`, Utils.replaceTmpl(tmpl, name));
     // .module.ts
     tmpl = await read(`${tmplDir}/page/module.ts.tmpl`);
     await write(`./src/pages/${name}/${name}.module.ts`, Utils.replaceTmpl(tmpl, name));
     // .html
     tmpl = await read(`${tmplDir}/page/html.tmpl`);
-    await write(`./src/pages/${name}/${name}.html`, Utils.replaceTmpl(tmpl, name));
+    await write(`./src/pages/${name}/${name}.page.html`, Utils.replaceTmpl(tmpl, name));
     // .scss
     tmpl = await read(`${tmplDir}/page/scss.tmpl`);
-    await write(`./src/pages/${name}/${name}.scss`, Utils.replaceTmpl(tmpl, name));
+    await write(`./src/pages/${name}/${name}.page.scss`, Utils.replaceTmpl(tmpl, name));
     //
     Utils.showSuccess(type, name);
   }
