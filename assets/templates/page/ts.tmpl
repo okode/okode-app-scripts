@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
 
-@IonicPage({ name: '$FILENAME$' })
 @Component({
   selector: '$FILENAME$-page',
-  templateUrl: '$FILENAME$.html'
+  templateUrl: '$FILENAME$.page.html'
+  styleUrls: ['./$FILENAME$.page.scss']
 })
-export class $CLASSNAME$Page {
+export class $CLASSNAME$Page implements OnInit {
 
   constructor() {}
+
+  ngOnInit() {}
 
 }
