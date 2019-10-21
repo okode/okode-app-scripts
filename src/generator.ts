@@ -128,7 +128,7 @@ module Utils {
   export function mkdir(path: string) {
     if (!fs.existsSync(path)) { fs.mkdirSync(path); }
   }
-  
+
   export function showError(err: any) {
     console.log('\n' + c.red('ERROR: ' + err) + '\n');
   }

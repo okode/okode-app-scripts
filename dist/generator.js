@@ -86,7 +86,7 @@ var Generator;
                         return [4 /*yield*/, read(tmplDir + "/page/ts.tmpl")];
                     case 1:
                         tmpl = _a.sent();
-                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".ts", Utils.replaceTmpl(tmpl, name))];
+                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".page.ts", Utils.replaceTmpl(tmpl, name))];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, read(tmplDir + "/page/module.ts.tmpl")];
@@ -100,14 +100,14 @@ var Generator;
                     case 5:
                         // .html
                         tmpl = _a.sent();
-                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".html", Utils.replaceTmpl(tmpl, name))];
+                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".page.html", Utils.replaceTmpl(tmpl, name))];
                     case 6:
                         _a.sent();
                         return [4 /*yield*/, read(tmplDir + "/page/scss.tmpl")];
                     case 7:
                         // .scss
                         tmpl = _a.sent();
-                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".scss", Utils.replaceTmpl(tmpl, name))];
+                        return [4 /*yield*/, write("./src/pages/" + name + "/" + name + ".page.scss", Utils.replaceTmpl(tmpl, name))];
                     case 8:
                         _a.sent();
                         //
